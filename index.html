@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zufallszahl Generator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h1 {
+            font-size: 24px;
+            color: #007BFF;
+            margin-bottom: 20px;
+        }
+        #randomNumber {
+            font-size: 40px;
+            font-weight: bold;
+            color: #28a745;
+            margin: 20px 0;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            font-size: 16px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button:active {
+            background-color: #003f7d;
+        }
+        p {
+            font-size: 14px;
+            color: #666;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Zufallszahl Generator</h1>
+        <p>Generiere eine Zufallszahl!</p>
+        <div id="randomNumber">0</div>
+        <button id="generateButton">Generiere Zufallszahl</button>
+        <p>Von 1 bis deinem Maximalwert</p>
+
+        <!-- Eingabefeld für Maximalwert unten unter dem Button -->
+        <input type="number" id="maxValue" placeholder="Maximalwert" value="100">
+    </div>
+
+    <script>
+        const button = document.getElementById("generateButton");
+        const numberDisplay = document.getElementById("randomNumber");
+        const maxValueInput = document.getElementById("maxValue");
+
+        button.addEventListener("click", () => {
+            const maxValue = parseInt(maxValueInput.value);
+            if (!isNaN(maxValue) && maxValue > 0) {
+                const randomNumber = Math.floor(Math.random() * maxValue) + 1; // Zahl zwischen 1 und maxValue
+                numberDisplay.textContent = randomNumber;
+
+                // Hinzufügen von Animation
+                numberDisplay.classList.add("fadeIn");
+                setTimeout(() => {
+                    numberDisplay.classList.remove("fadeIn");
+                }, 500); // Animation zurücksetzen
+            } else {
+                numberDisplay.textContent = "Bitte einen gültigen Maximalwert eingeben!";
+            }
+        });
+    </script>
+</body>
+</html>
